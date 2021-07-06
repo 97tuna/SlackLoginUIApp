@@ -40,9 +40,9 @@ class ViewController: UIViewController {
         // 화면에 표시되기 직전에 옵저버가 추가, 미리 뷰 로드전에 하면 오류가 생김
         var token = NotificationCenter.default.addObserver(forName: UIResponder.keyboardWillShowNotification, object: nil, queue: OperationQueue.main) { [weak self] (noti) in
             if let frameValue = noti.userInfo?[UIResponder.keyboardFrameEndUserInfoKey] as? NSValue {
-                let keykoardFrame = frameValue.cgRectValue
+                let keyboardFrame = frameValue.cgRectValue
                 
-                self?.bottomConstraint.constant = keykoardFrame.size.height
+                self?.bottomConstraint.constant = keyboardFrame.size.height
                 
                 UIView.animate(withDuration: 0.3, animations: {
                     self?.view.layoutIfNeeded()
