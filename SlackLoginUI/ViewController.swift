@@ -26,20 +26,18 @@ class ViewController: UIViewController {
     var tokens = [NSObjectProtocol]()
     
     deinit {
+        
+    }
+    
+    override func viewWillDisappear(_ animated: Bool) {
+        super.viewWillDisappear(animated)
+        
         tokens.forEach { NotificationCenter.default.removeObserver($0) }
     }
     
     override func viewWillAppear(_ animated: Bool) { // 화면이 표시되기 직전에 사용
         super.viewWillAppear(animated)
-        
-        urlField.becomeFirstResponder()
-    }
-    
-    override func viewDidLoad() {
-        super.viewDidLoad()
-        
-        nextButton.isEnabled = false // 처음에는 일단 비활성화
-        
+        // 화면에 표시되기 직전에 옵저버가 추가, 미리 뷰 로드전에 하면 오류가 생김
         var token = NotificationCenter.default.addObserver(forName: UIResponder.keyboardWillShowNotification, object: nil, queue: OperationQueue.main) { [weak self] (noti) in
             if let frameValue = noti.userInfo?[UIResponder.keyboardFrameEndUserInfoKey] as? NSValue {
                 let keykoardFrame = frameValue.cgRectValue
@@ -63,13 +61,42 @@ class ViewController: UIViewController {
             }
         })
         tokens.append(token)
+        
+        urlField.becomeFirstResponder()
     }
+    
+    override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
+        if let vc = segue.destination as? EmailViewController {
+            vc.bottomMargin = bottomConstraint.constant
+        }
+    }
+    
+    override func viewDidLoad() {
+        super.viewDidLoad()
+        
+        nextButton.isEnabled = false // 처음에는 일단 비활성화
+    }
+    
+    var presented = false
 }
 
 extension ViewController: UITextFieldDelegate {
+    // return 키 누르면 실행
+    func textFieldShouldReturn(_ textField: UITextField) -> Bool {
+        let cnt = textField.text?.count ?? 0
+        
+        if cnt > 0 {
+            performSegue(withIdentifier: "emailSegue", sender: nil)
+        }
+        return true
+    }
+    
     // 메소드 호출 후 키보드 생성, 여기서 애니메이션 비활성화 하기
     func textFieldDidBeginEditing(_ textField: UITextField) {
-        UIView.setAnimationsEnabled(false) // 모든 애니메이션 비활성화, 키보드가 표시된 다음 애니메이션 다시 활성화 할 것.
+        if !presented {
+            UIView.setAnimationsEnabled(false) // 모든 애니메이션 비활성화, 키보드가 표시된 다음 애니메이션 다시 활성화 할 것.
+            presented = true
+        }
     }
     
     // 소문자, 대문자, 하이픈만 쓸 수 있도록 제한

@@ -13,6 +13,7 @@
 		7707B612269487EC005E880B /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 7707B610269487EC005E880B /* Main.storyboard */; };
 		7707B614269487EF005E880B /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 7707B613269487EF005E880B /* Assets.xcassets */; };
 		7707B617269487EF005E880B /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 7707B615269487EF005E880B /* LaunchScreen.storyboard */; };
+		7707B61F26949E6D005E880B /* EmailViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7707B61E26949E6D005E880B /* EmailViewController.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -24,6 +25,7 @@
 		7707B613269487EF005E880B /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
 		7707B616269487EF005E880B /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/LaunchScreen.storyboard; sourceTree = "<group>"; };
 		7707B618269487EF005E880B /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
+		7707B61E26949E6D005E880B /* EmailViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = EmailViewController.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -63,6 +65,7 @@
 				7707B613269487EF005E880B /* Assets.xcassets */,
 				7707B615269487EF005E880B /* LaunchScreen.storyboard */,
 				7707B618269487EF005E880B /* Info.plist */,
+				7707B61E26949E6D005E880B /* EmailViewController.swift */,
 			);
 			path = SlackLoginUI;
 			sourceTree = "<group>";
@@ -140,6 +143,7 @@
 				7707B60F269487EC005E880B /* ViewController.swift in Sources */,
 				7707B60B269487EC005E880B /* AppDelegate.swift in Sources */,
 				7707B60D269487EC005E880B /* SceneDelegate.swift in Sources */,
+				7707B61F26949E6D005E880B /* EmailViewController.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
